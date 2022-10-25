@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home.component';
 import { HomeRoutingModule } from './home-routing.module';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
   imports: [
     CommonModule,
     HomeRoutingModule,
-    DragDropModule
+    DragDropModule,
+    MatGridListModule
   ]
 })
 export class HomeModule { }

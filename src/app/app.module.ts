@@ -14,7 +14,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     BrowserModule,
     AppRoutingModule,
     ToolbarComponent,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

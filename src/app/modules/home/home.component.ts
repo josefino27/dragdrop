@@ -9,19 +9,19 @@ import { CardsService } from 'src/app/services/cards.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit,OnDestroy {
+export class HomeComponent implements OnInit, OnDestroy {
 
-  cartas1 :  Card[] = [];
-  cartas2 :  Card[] = [];
+  cartas1: Card[] = [];
+  cartas2: Card[] = [];
 
 
-  constructor(private  cards:CardsService) { }
+  constructor(private cards: CardsService) { }
 
-   ngOnInit() {
+  ngOnInit() {
 
     this.loadCards();
     this.loadCards2();
-    
+
   }
 
   drop(event: CdkDragDrop<any[]>) {
@@ -38,26 +38,32 @@ export class HomeComponent implements OnInit,OnDestroy {
     }
   }
 
-   loadCards2() {
+  loadCards2() {
     console.log(this.cards.trae2())
     this.cards.trae2().subscribe(resp => {
       this.cartas2.push(...resp.cards)
       console.log(this.cartas2)
     })
-   }
-    loadCards(){
+  }
+  loadCards() {
     this.cards.trae1().subscribe(resp => {
       this.cartas1.push(...resp.cards)
       console.log(this.cartas1)
     })
   }
-  predicate(event: CdkDrag<any>){
-    console.log(event.data)
-    return event.data <=9;
+  predicate(event: CdkDrag<any>) {
+    return event.data <= 9;
+  }
+  predicate2(event: CdkDrag<any>) {
+    return event.data == 10 || event.data == "ACE" || event.data == "KING" || event.data == "QUEEN" || event.data == "JACK"
   }
 
+  traermas() {
+    this.cartas1 = [];
+    this.cartas2 = [];
+    return this.loadCards(),this.loadCards2();
+  }
   ngOnDestroy() {
   }
-  
- 
+
 }

@@ -16,6 +16,6 @@ export class CardsService {
     return this.http.get<Maso1>('https://www.deckofcardsapi.com/api/deck/new/draw/?count=5');
   }
   trae2(){
-    return this.http.get<Maso1>('https://www.deckofcardsapi.com/api/deck/new/draw/?count=1');
+    return this.http.get<Maso1>('https://www.deckofcardsapi.com/api/deck/new/draw/?count=5');
   }
 }
