@@ -7,7 +7,9 @@
         [cdkDropListData]="todo"
         class="example-list"
         (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let item of todo" cdkDrag>{{item}}</div>
+        <div class="example-box" *ngFor="let carta of cartas" cdkDrag>
+          <a href="" target="_blank" rel="noopener noreferrer"><img src="{{carta.image}}" alt=""></a>
+          </div>
       </div>
     </div>
   
@@ -19,7 +21,8 @@
         [cdkDropListData]="done"
         class="example-list"
         (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let item of done" cdkDrag>{{item}}</div>
+        <div class="example-box" *ngFor="let carta of cartas" cdkDrag> 
+          <a href="" target="_blank" rel="noopener noreferrer"><img src="{{carta.image}}" alt=""></a></div>
       </div>
     </div>
   </div>

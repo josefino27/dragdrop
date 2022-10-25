@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { OnInit, Component, ViewChild } from '@angular/core';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
@@ -15,7 +15,7 @@ import { CardsService } from 'src/app/services/cards.service';
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss']
 })
-export class TableComponent implements AfterViewInit {
+export class TableComponent implements OnInit {
 
  
   cartas : Card[] = [];
@@ -30,9 +30,10 @@ export class TableComponent implements AfterViewInit {
   }
 
 
-  ngAfterViewInit() {
+  ngOnInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+    this.loadCards();
   }
 
   applyFilter(event: Event) {

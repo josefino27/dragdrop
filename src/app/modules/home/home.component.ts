@@ -1,5 +1,8 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
+import { Card } from 'src/app/models/data';
+import { CardsService } from 'src/app/services/cards.service';
+
 
 @Component({
   selector: 'app-home',
@@ -8,9 +11,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  cartas : Card[] = [];
 
-  ngOnInit(): void {
+  constructor(private cards:CardsService) { }
+
+  ngOnInit() {
+
+    this.loadCards();
+    
   }
   todo = ['Get to work', 'Pick up groceries', 'Go home', 'Fall asleep'];
 
@@ -27,6 +35,12 @@ export class HomeComponent implements OnInit {
         event.currentIndex,
       );
     }
+  }
+  loadCards(){
+    this.cards.trae().subscribe( resp => {
+      this.cartas.push(...resp.cards)
+    })
+    console.log(this.cartas)
   }
 
 }

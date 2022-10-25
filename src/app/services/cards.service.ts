@@ -11,7 +11,10 @@ export class CardsService {
   constructor(private http: HttpClient) { 
   }
 
+  baraja(){
+    return this.http.get<GenteModel>('https://www.deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1')
+  }
   trae(){
-    return this.http.get<GenteModel>('https://www.deckofcardsapi.com/api/deck/guokatw0pp52/draw/?count=2');
+    return this.http.get<GenteModel>('https://www.deckofcardsapi.com/api/deck/new/draw/?count=5');
   }
 }
