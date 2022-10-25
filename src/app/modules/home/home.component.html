@@ -1,31 +1,29 @@
-<div cdkDropListGroup>
-    <div class="example-container">
-      <h2>To do</h2>
-  
-      <div
-        cdkDropList
-        [cdkDropListData]="todo"
-        class="example-list"
-        (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let carta of cartas" cdkDrag>
-          <a href="" target="_blank" rel="noopener noreferrer"><img src="{{carta.image}}" alt=""></a>
-          </div>
-      </div>
-    </div>
-  
-    <div class="example-container">
-      <h2>Done</h2>
-  
-      <div
-        cdkDropList
-        [cdkDropListData]="done"
-        class="example-list"
-        (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let carta of cartas" cdkDrag> 
-          <a href="" target="_blank" rel="noopener noreferrer"><img src="{{carta.image}}" alt=""></a></div>
-      </div>
-    </div>
-  </div>
-  
+<div class="example-container">
+  <h2>Carta Mas Alta Gana</h2>
 
-    <app-table></app-table>
+  <div
+    cdkDropList
+    #todoList="cdkDropList"
+    [cdkDropListData]="cartas2"
+    [cdkDropListConnectedTo]="[doneList]"
+    class="example-list"
+    (cdkDropListDropped)="drop($event)"
+    [cdkDropListEnterPredicate]="predicate">
+    <div class="example-box" *ngFor="let item of cartas2" [cdkDragData]="item.value" cdkDrag> <img src="{{item.image}}"></div>
+  </div>
+</div>
+
+<div class="example-container">
+  <h2>Elige</h2>
+
+  <div
+    cdkDropList
+    #doneList="cdkDropList"
+    [cdkDropListData]="cartas1"
+    [cdkDropListConnectedTo]="[todoList]"
+    class="example-list"
+    (cdkDropListDropped)="drop($event)"
+    (cdkDropListEnterPredicate)="predicate">
+    <div class="example-box" *ngFor="let item of cartas1; let i = index" [cdkDragData]="item.value" cdkDrag>{{i+1}}</div>
+  </div>
+</div>

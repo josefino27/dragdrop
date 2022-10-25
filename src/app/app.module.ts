@@ -5,7 +5,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
-import { TableComponent } from './components/table/table.component';
 
 @NgModule({
   declarations: [
@@ -15,8 +14,7 @@ import { TableComponent } from './components/table/table.component';
     BrowserModule,
     AppRoutingModule,
     ToolbarComponent,
-    HttpClientModule,
-    TableComponent
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

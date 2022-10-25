@@ -1,5 +1,5 @@
-import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { Component, OnInit } from '@angular/core';
+import { CdkDrag, CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Card } from 'src/app/models/data';
 import { CardsService } from 'src/app/services/cards.service';
 
@@ -9,22 +9,23 @@ import { CardsService } from 'src/app/services/cards.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit,OnDestroy {
 
-  cartas : Card[] = [];
+  cartas1 :  Card[] = [];
+  cartas2 :  Card[] = [];
 
-  constructor(private cards:CardsService) { }
 
-  ngOnInit() {
+  constructor(private  cards:CardsService) { }
+
+   ngOnInit() {
 
     this.loadCards();
+    this.loadCards2();
     
   }
-  todo = ['Get to work', 'Pick up groceries', 'Go home', 'Fall asleep'];
 
-  done = ['Get up', 'Brush teeth', 'Take a shower', 'Check e-mail', 'Walk dog'];
+  drop(event: CdkDragDrop<any[]>) {
 
-  drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
@@ -36,11 +37,27 @@ export class HomeComponent implements OnInit {
       );
     }
   }
-  loadCards(){
-    this.cards.trae().subscribe( resp => {
-      this.cartas.push(...resp.cards)
+
+   loadCards2() {
+    console.log(this.cards.trae2())
+    this.cards.trae2().subscribe(resp => {
+      this.cartas2.push(...resp.cards)
+      console.log(this.cartas2)
     })
-    console.log(this.cartas)
+   }
+    loadCards(){
+    this.cards.trae1().subscribe(resp => {
+      this.cartas1.push(...resp.cards)
+      console.log(this.cartas1)
+    })
+  }
+  predicate(event: CdkDrag<any>){
+    console.log(event.data)
+    return event.data <=9;
   }
 
+  ngOnDestroy() {
+  }
+  
+ 
 }

@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home.component';
 import { HomeRoutingModule } from './home-routing.module';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { TableComponent } from 'src/app/components';
-
 
 
 @NgModule({
@@ -14,8 +12,7 @@ import { TableComponent } from 'src/app/components';
   imports: [
     CommonModule,
     HomeRoutingModule,
-    DragDropModule,
-    TableComponent
+    DragDropModule
   ]
 })
 export class HomeModule { }

@@ -1,5 +1,5 @@
 
-export interface GenteModel {
+export interface Maso1 {
   success: boolean;
   deck_id: string;
   cards: Card[];
@@ -18,3 +18,4 @@ export interface Images {
   svg: string;
   png: string;
 }
+
