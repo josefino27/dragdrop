@@ -1,21 +1,24 @@
 <div class="example-container">
-  <h2>Cartas menores a 10</h2>
+
+  <span>Buscar Carta:</span>
+  <input matInput placeholder="Buscar Carta" [(ngModel)]="filterb" type="search">
   <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="cartas2" [cdkDropListConnectedTo]="[doneList]"
     class="example-list" (cdkDropListDropped)="drop($event)" [cdkDropListEnterPredicate]="predicate">
-    <div class="example-box" *ngFor="let item of cartas2" [cdkDragData]="item.value" cdkDrag>
+    <div class="example-box" *ngFor="let item of cartas2 | buscador:filterb" [cdkDragData]="item.value" cdkDrag>
       <img src="{{item.image}}">
     </div>
   </div>
 </div>
 <div class="example-container">
-  <button (click)="traermas()">
-    <h2>Reset</h2>
-  </button>
+  <span>Buscar Carta:</span>
+  <input matInput placeholder="Buscar Carta" [(ngModel)]="filtera" type="search">
   <div class="example-list" cdkDropList #doneList="cdkDropList" [cdkDropListData]="cartas1"
     [cdkDropListConnectedTo]="[todoList]" (cdkDropListDropped)="drop($event)" [cdkDropListEnterPredicate]="predicate2">
-    <div class="example-box" *ngFor="let item of cartas1; let i = index" [cdkDragData]="item.value" cdkDrag>
+    <div class="example-box" *ngFor="let item of cartas1  | buscador:filtera" [cdkDragData]="item.value" cdkDrag>
       <img src="{{item.image}}">
     </div>
   </div>
-
+  <button (click)="traermas()">
+    <h2>Reset</h2>
+  </button>
 </div>

@@ -10,11 +10,10 @@ import { CardsService } from 'src/app/services/cards.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit, OnDestroy {
-
   cartas1: Card[] = [];
   cartas2: Card[] = [];
-
-
+  filtera= "";
+  filterb = "";
   constructor(private cards: CardsService) { }
 
   ngOnInit() {
